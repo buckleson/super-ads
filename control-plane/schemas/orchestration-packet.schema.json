@@ -1,0 +1,7 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "urn:buckleson:super-ads:schema:control:v1:orchestration-packet.v1.json",
+  "title": "Super Ads orchestration task packet compatibility alias",
+  "$comment": "Use super_ads_core/schemas/v1/orchestration-task.schema.json. Task state is immutable; completion belongs in a result packet.",
+  "$ref": "urn:buckleson:super-ads:schema:core:v1:orchestration-task.schema.json"
+}
