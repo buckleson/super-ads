@@ -17,6 +17,12 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
   that compare committed evidence with today's date. Release verification
   requires the job.
 
+### Changed
+
+* Dependabot version updates are disabled for GitHub Actions as well as pip
+  (`open-pull-requests-limit: 0`), so no update branches are created.
+  Security updates are unaffected.
+
 ### Fixed
 
 * Pinned git installs (`--ref`) failed on git 2.43 because

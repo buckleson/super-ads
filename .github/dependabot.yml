@@ -1,8 +1,11 @@
 version: 2
 updates:
-  # Python dependencies are hash-locked and pinned by the release inventory, so
-  # they change only in a reviewed release. A limit of 0 turns off routine
-  # version-update pull requests; Dependabot security updates still open.
+  # Routine version-update pull requests are disabled for every ecosystem
+  # (open-pull-requests-limit: 0), so Dependabot does not create update
+  # branches. Python dependencies are hash-locked and pinned by the release
+  # inventory, and GitHub Actions are pinned to full commit SHAs; both change
+  # only in a reviewed release. Dependabot security updates are controlled
+  # separately in the repository's security settings and are not affected.
   - package-ecosystem: pip
     directory: /
     schedule:
@@ -11,18 +14,10 @@ updates:
     labels:
       - dependencies
 
-  # One grouped pull request per month for minor and patch action updates.
   - package-ecosystem: github-actions
     directory: /
     schedule:
       interval: monthly
-    groups:
-      actions-minor-patch:
-        patterns:
-          - '*'
-        update-types:
-          - minor
-          - patch
-    open-pull-requests-limit: 2
+    open-pull-requests-limit: 0
     labels:
       - dependencies
