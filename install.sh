@@ -36,8 +36,9 @@ set -euo pipefail
 # --ref=<tag|branch|commit> is an opt-in pin for --source=git only. The value is
 # validated strictly before any use (at most 100 characters of letters, digits,
 # dot, underscore, hyphen, and slash; no leading hyphen, dot, or slash; no `..`,
-# `//`, or trailing slash), resolved to a full commit SHA after the clone, and checked
-# out detached through `--end-of-options`, so it can never be parsed as an option.
+# `//`, or trailing slash), resolved through `rev-parse --end-of-options` to a
+# validated hex commit SHA, and only that SHA is checked out, so the user value
+# can never be parsed as an option.
 # A git ref is not a checksum-verified release and nothing here is signed. An
 # unresolvable ref fails before any install-root mutation.
 
@@ -498,8 +499,12 @@ print("|".join((sys.implementation.name, f"{sys.version_info.major}.{sys.version
                 echo "  Nothing was installed." >&2
                 exit 1
             }
+            # PINNED_SHA is a validated 40/64-char hex object name, so it can
+            # never be parsed as an option. `checkout --end-of-options <rev> --`
+            # is rejected by git 2.43 ("only one reference expected"), so the
+            # portable form relies on that validation plus the trailing `--`.
             git -c advice.detachedHead=false -C "${TEMP_DIR}/super-ads" \
-                checkout --detach --end-of-options "$PINNED_SHA" -- || {
+                checkout --detach "$PINNED_SHA" -- || {
                 echo "✗ Could not check out git ref ${GIT_REF} (${PINNED_SHA}). Nothing was installed." >&2
                 exit 1
             }

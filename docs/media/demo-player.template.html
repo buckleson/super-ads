@@ -1,0 +1,40 @@
+<!doctype html><html><head><meta charset="utf-8"><style>
+*{box-sizing:border-box}body{margin:0;width:1280px;height:720px;overflow:hidden;background:radial-gradient(1200px 700px at 20% 0%,#1e293b,#0b1020 60%);font-family:Inter,ui-sans-serif,system-ui,Segoe UI,Roboto,sans-serif;color:#e2e8f0}
+.wrap{position:absolute;inset:0;padding:36px 56px;display:flex;flex-direction:column}
+.top{display:flex;align-items:center;justify-content:space-between;margin-bottom:18px}
+.brand{font-weight:800;font-size:26px;letter-spacing:-.02em}.brand b{background:linear-gradient(90deg,#38bdf8,#a78bfa,#f472b6);-webkit-background-clip:text;color:transparent}
+.tag{font-size:13px;color:#94a3b8;border:1px solid #334155;border-radius:999px;padding:6px 12px}
+.cap{font-size:20px;color:#cbd5e1;height:30px;margin-bottom:12px;transition:opacity .3s}.cap .n{color:#38bdf8;font-weight:700;margin-right:8px}
+.term{flex:1;background:#0f172a;border:1px solid #1e293b;border-radius:14px;box-shadow:0 30px 80px rgba(0,0,0,.5);overflow:hidden;display:flex;flex-direction:column}
+.bar{height:38px;background:#111827;display:flex;align-items:center;padding:0 14px;gap:8px;border-bottom:1px solid #1f2937}
+.dot{width:12px;height:12px;border-radius:50%}.title{margin-left:12px;font-size:13px;color:#64748b;font-family:ui-monospace,Menlo,monospace}
+pre{margin:0;padding:18px 22px;font:15.5px/1.5 "JetBrains Mono",ui-monospace,SFMono-Regular,Menlo,Consolas,monospace;white-space:pre-wrap;word-break:break-all;color:#cbd5e1;flex:1;overflow:hidden}
+.p{color:#22c55e}.c{color:#f8fafc}.k{color:#7dd3fc}.s{color:#fbbf24}.cur{display:inline-block;width:9px;height:18px;background:#e2e8f0;vertical-align:-3px;animation:b 1s steps(1) infinite}@keyframes b{50%{opacity:0}}
+.intro,.outro{position:absolute;inset:0;display:flex;flex-direction:column;align-items:center;justify-content:center;background:radial-gradient(900px 600px at 50% 30%,#1e293b,#0b1020 70%);transition:opacity .6s}
+.intro h1{font-size:76px;margin:0;font-weight:900;letter-spacing:-.04em}.intro h1 b{background:linear-gradient(90deg,#38bdf8,#a78bfa,#f472b6);-webkit-background-clip:text;color:transparent}
+.intro p{font-size:24px;color:#94a3b8;margin:14px 0 0}.intro small{margin-top:28px;font-size:15px;color:#64748b}
+.outro{flex-direction:row;gap:48px;opacity:0}.outro img{height:600px;border-radius:12px;box-shadow:0 30px 80px rgba(0,0,0,.6)}
+.outro .txt{max-width:430px}.outro h2{font-size:42px;margin:0 0 14px;letter-spacing:-.03em}.outro li{font-size:20px;color:#cbd5e1;margin:10px 0}.outro .u{margin-top:26px;color:#38bdf8;font-size:18px;font-family:ui-monospace,monospace}
+</style></head><body>
+<div class="wrap"><div class="top"><div class="brand"><b>Super Ads</b> core CLI</div><div class="tag">real command output · synthetic demo data</div></div>
+<div class="cap" id="cap"></div>
+<div class="term"><div class="bar"><span class="dot" style="background:#ef4444"></span><span class="dot" style="background:#f59e0b"></span><span class="dot" style="background:#22c55e"></span><span class="title">~/super-ads-demo</span></div><pre id="t"></pre></div></div>
+<div class="intro" id="intro"><h1><b>Super Ads</b></h1><p>Your AI paid-media analyst. Twelve platforms. One command line.</p><small>by Buckleson</small></div>
+<div class="outro" id="outro"><img src="report.png"><div class="txt"><h2>Evidence-backed reports</h2><ul><li>Pass, fail, and unknown, never guessed</li><li>Health score only when evidence allows</li><li>Markdown, HTML, or PDF from one JSON bundle</li></ul><div class="u">github.com/buckleson/super-ads</div></div></div>
+<script>
+const scenes=__SCENES__;const t=document.getElementById('t'),cap=document.getElementById('cap');
+const sleep=ms=>new Promise(r=>setTimeout(r,ms));
+const esc=s=>s.replace(/&/g,'&amp;').replace(/</g,'&lt;');
+const color=l=>esc(l).replace(/(&quot;|")([^"]+)(")(\s*:)/g,'<span class="k">"$2"</span>$4').replace(/:\s"([^"]*)"/g,': <span class="s">"$1"</span>');
+async function play(){
+  await sleep(2600);document.getElementById('intro').style.opacity=0;await sleep(600);
+  for(let i=0;i<scenes.length;i++){const s=scenes[i];
+    cap.innerHTML=`<span class="n">${i+1}/${scenes.length}</span>${s.caption}`;
+    t.innerHTML='';let typed='';
+    for(const ch of s.cmd){typed+=ch;t.innerHTML=`<span class="p">$</span> <span class="c">${esc(typed)}</span><span class="cur"></span>`;await sleep(26);}
+    await sleep(350);let body=`<span class="p">$</span> <span class="c">${esc(s.cmd)}</span>\n`;
+    for(const l of s.out){body+=color(l)+'\n';t.innerHTML=body;await sleep(55);}
+    t.innerHTML=body+`<span class="p">$</span> <span class="cur"></span>`;await sleep(2300);}
+  document.getElementById('outro').style.opacity=1;await sleep(5200);window.__done=true;}
+play();
+</script></body></html>

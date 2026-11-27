@@ -123,7 +123,7 @@ ZIP_TIMESTAMP = (1980, 1, 1, 0, 0, 0)
 # notice review. The inventory digest is filled from the reviewed canonical
 # document; keeping it in executable verifier code makes self-consistent
 # archive/manifest/SBOM/checksum forgery fail closed.
-EXPECTED_DEPENDENCY_INVENTORY_SHA256 = "a597bea13fe611f2f2d0037786065f414f7bef50c1dc65372ecb895f9ddf3d5a"
+EXPECTED_DEPENDENCY_INVENTORY_SHA256 = "6129ecef6f711abdc9a9234d6fa6a0541b18a68c15af128be84b652c9fbb1796"
 EXPECTED_THIRD_PARTY_NOTICES_SHA256 = "9231ab8675227a74d067d0905edb1ca64c1b624320a7e346671846ea307ab45d"
 EXPECTED_EXTERNAL_RUNTIME_DEPENDENCIES_SHA256 = "a4f48cbe1e3958290bc56851227fa94f39ddc52e93f03526e69edb65cbc6819e"
 INVENTORY_RESOLVED_AT = "2026-10-07T00:00:00Z"
@@ -1634,6 +1634,7 @@ def verify_github_run(root: Path, run_id: str, commit_sha: str) -> dict[str, obj
         raise ReleaseError("GitHub Actions jobs evidence is missing")
     required = {
         "Repository audit",
+        "Evidence freshness",
         "Core tests (Python 3.11)",
         "Core tests (Python 3.12)",
         "Full test suite",

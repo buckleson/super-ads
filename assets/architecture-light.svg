@@ -1,0 +1,118 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="816" viewBox="0 0 1200 816" font-family="Inter,ui-sans-serif,system-ui,-apple-system,Segoe UI,Roboto,sans-serif" role="img" aria-labelledby="t d">
+<title id="t">Super Ads architecture</title>
+<desc id="d">An operator talks to the /ads conductor inside an agent host. The conductor routes to 33 skills and 25 bounded worker agents, which return schema-valid results to the deterministic super_ads_core engine. The control plane supplies sources, controls, capabilities and safety policy. Output is one validated JSON bundle rendered to Markdown, HTML or PDF. Account changes pass a mutation gate.</desc>
+<defs><marker id="a" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto"><path d="M0,0 L10,5 L0,10 z" fill="#94a3b8"/></marker></defs>
+<rect width="1200" height="816" rx="20" fill="#ffffff"/>
+<text x="40" y="52" font-size="26" font-weight="800" fill="#0f172a">How Super Ads works</text>
+<text x="40" y="78" font-size="14" fill="#94a3b8">One conductor, bounded workers, a deterministic core, and evidence for every claim.</text>
+<rect x="40" y="104" width="1120" height="74" rx="14" fill="#f8fafc" stroke="#e2e8f0"/>
+<rect x="40" y="104" width="6" height="74" rx="3" fill="#0ea5e9"/>
+<text x="62" y="134" font-size="17" font-weight="700" fill="#0f172a">You + your agent host</text>
+<text x="62" y="158" font-size="13" fill="#475569">Claude Code (verified). Codex, Gemini, Cursor, Windsurf, Goose (experimental).</text>
+<path d="M600,178 L600,206" stroke="#94a3b8" stroke-width="2" fill="none" marker-end="url(#a)"/>
+<text x="608.0" y="196.0" font-size="11.5" fill="#94a3b8">/ads audit · plan · create · monitor · optimize · report</text>
+<rect x="40" y="206" width="1120" height="108" rx="14" fill="#f8fafc" stroke="#e2e8f0"/>
+<rect x="40" y="206" width="6" height="108" rx="3" fill="#8b5cf6"/>
+<text x="62" y="236" font-size="17" font-weight="700" fill="#0f172a">/ads conductor  ·  ads/SKILL.md</text>
+<text x="62" y="260" font-size="13" fill="#475569">Owns scope, policy, aggregation, and final artifacts. Treats exports, URLs, and web content as data, never instructions.</text>
+<rect x="62" y="280" width="50" height="22" rx="11" fill="#ffffff" stroke="#8b5cf6" stroke-opacity=".55"/>
+<text x="69" y="295" font-size="11.5" fill="#475569" font-family="ui-monospace,SFMono-Regular,Menlo,monospace">setup</text>
+<rect x="117.5" y="280" width="50" height="22" rx="11" fill="#ffffff" stroke="#8b5cf6" stroke-opacity=".55"/>
+<text x="124.5" y="295" font-size="11.5" fill="#475569" font-family="ui-monospace,SFMono-Regular,Menlo,monospace">audit</text>
+<rect x="173.0" y="280" width="42" height="22" rx="11" fill="#ffffff" stroke="#8b5cf6" stroke-opacity=".55"/>
+<text x="180.0" y="295" font-size="11.5" fill="#475569" font-family="ui-monospace,SFMono-Regular,Menlo,monospace">plan</text>
+<rect x="221.4" y="280" width="57" height="22" rx="11" fill="#ffffff" stroke="#8b5cf6" stroke-opacity=".55"/>
+<text x="228.4" y="295" font-size="11.5" fill="#475569" font-family="ui-monospace,SFMono-Regular,Menlo,monospace">create</text>
+<rect x="284.0" y="280" width="113" height="22" rx="11" fill="#ffffff" stroke="#8b5cf6" stroke-opacity=".55"/>
+<text x="291.0" y="295" font-size="11.5" fill="#475569" font-family="ui-monospace,SFMono-Regular,Menlo,monospace">launch --draft</text>
+<rect x="403.4" y="280" width="64" height="22" rx="11" fill="#ffffff" stroke="#8b5cf6" stroke-opacity=".55"/>
+<text x="410.4" y="295" font-size="11.5" fill="#475569" font-family="ui-monospace,SFMono-Regular,Menlo,monospace">monitor</text>
+<rect x="473.09999999999997" y="280" width="128" height="22" rx="11" fill="#ffffff" stroke="#8b5cf6" stroke-opacity=".55"/>
+<text x="480.09999999999997" y="295" font-size="11.5" fill="#475569" font-family="ui-monospace,SFMono-Regular,Menlo,monospace">optimize --draft</text>
+<rect x="606.6999999999999" y="280" width="85" height="22" rx="11" fill="#ffffff" stroke="#8b5cf6" stroke-opacity=".55"/>
+<text x="613.6999999999999" y="295" font-size="11.5" fill="#475569" font-family="ui-monospace,SFMono-Regular,Menlo,monospace">experiment</text>
+<rect x="697.6999999999999" y="280" width="57" height="22" rx="11" fill="#ffffff" stroke="#8b5cf6" stroke-opacity=".55"/>
+<text x="704.6999999999999" y="295" font-size="11.5" fill="#475569" font-family="ui-monospace,SFMono-Regular,Menlo,monospace">report</text>
+<rect x="760.3" y="280" width="71" height="22" rx="11" fill="#ffffff" stroke="#8b5cf6" stroke-opacity=".55"/>
+<text x="767.3" y="295" font-size="11.5" fill="#475569" font-family="ui-monospace,SFMono-Regular,Menlo,monospace">validate</text>
+<rect x="837.0999999999999" y="280" width="57" height="22" rx="11" fill="#ffffff" stroke="#8b5cf6" stroke-opacity=".55"/>
+<text x="844.0999999999999" y="295" font-size="11.5" fill="#475569" font-family="ui-monospace,SFMono-Regular,Menlo,monospace">status</text>
+<rect x="899.6999999999999" y="280" width="42" height="22" rx="11" fill="#ffffff" stroke="#8b5cf6" stroke-opacity=".55"/>
+<text x="906.6999999999999" y="295" font-size="11.5" fill="#475569" font-family="ui-monospace,SFMono-Regular,Menlo,monospace">next</text>
+<path d="M320,314 L320,346" stroke="#94a3b8" stroke-width="2" fill="none" marker-end="url(#a)"/>
+<path d="M880,314 L880,346" stroke="#94a3b8" stroke-width="2" fill="none" marker-end="url(#a)"/>
+<rect x="40" y="346" width="550" height="150" rx="14" fill="#f8fafc" stroke="#e2e8f0"/>
+<rect x="40" y="346" width="6" height="150" rx="3" fill="#ec4899"/>
+<text x="62" y="376" font-size="17" font-weight="700" fill="#0f172a">33 focused skills</text>
+<text x="62" y="400" font-size="13" fill="#475569">12 platform audits plus lifecycle workflows.</text>
+<text x="62" y="420" font-size="13" fill="#475569">38 dated reference files, loaded on demand.</text>
+<rect x="62" y="462" width="57" height="22" rx="11" fill="#ffffff" stroke="#ec4899" stroke-opacity=".55"/>
+<text x="69" y="477" font-size="11.5" fill="#475569" font-family="ui-monospace,SFMono-Regular,Menlo,monospace">google</text>
+<rect x="124.6" y="462" width="42" height="22" rx="11" fill="#ffffff" stroke="#ec4899" stroke-opacity=".55"/>
+<text x="131.6" y="477" font-size="11.5" fill="#475569" font-family="ui-monospace,SFMono-Regular,Menlo,monospace">meta</text>
+<rect x="173.0" y="462" width="64" height="22" rx="11" fill="#ffffff" stroke="#ec4899" stroke-opacity=".55"/>
+<text x="180.0" y="477" font-size="11.5" fill="#475569" font-family="ui-monospace,SFMono-Regular,Menlo,monospace">youtube</text>
+<rect x="242.7" y="462" width="71" height="22" rx="11" fill="#ffffff" stroke="#ec4899" stroke-opacity=".55"/>
+<text x="249.7" y="477" font-size="11.5" fill="#475569" font-family="ui-monospace,SFMono-Regular,Menlo,monospace">linkedin</text>
+<rect x="319.5" y="462" width="57" height="22" rx="11" fill="#ffffff" stroke="#ec4899" stroke-opacity=".55"/>
+<text x="326.5" y="477" font-size="11.5" fill="#475569" font-family="ui-monospace,SFMono-Regular,Menlo,monospace">tiktok</text>
+<rect x="382.1" y="462" width="78" height="22" rx="11" fill="#ffffff" stroke="#ec4899" stroke-opacity=".55"/>
+<text x="389.1" y="477" font-size="11.5" fill="#475569" font-family="ui-monospace,SFMono-Regular,Menlo,monospace">microsoft</text>
+<rect x="466.0" y="462" width="57" height="22" rx="11" fill="#ffffff" stroke="#ec4899" stroke-opacity=".55"/>
+<text x="473.0" y="477" font-size="11.5" fill="#475569" font-family="ui-monospace,SFMono-Regular,Menlo,monospace">amazon</text>
+<rect x="610" y="346" width="550" height="150" rx="14" fill="#f8fafc" stroke="#e2e8f0"/>
+<rect x="610" y="346" width="6" height="150" rx="3" fill="#f59e0b"/>
+<text x="632" y="376" font-size="17" font-weight="700" fill="#0f172a">25 bounded worker agents</text>
+<text x="632" y="400" font-size="13" fill="#475569">17 read-only audit workers, research and creative helpers,</text>
+<text x="632" y="420" font-size="13" fill="#475569">and verifiers. Each returns a schema-valid result.</text>
+<rect x="632" y="462" width="64" height="22" rx="11" fill="#ffffff" stroke="#f59e0b" stroke-opacity=".55"/>
+<text x="639" y="477" font-size="11.5" fill="#475569" font-family="ui-monospace,SFMono-Regular,Menlo,monospace">audit-*</text>
+<rect x="701.7" y="462" width="120" height="22" rx="11" fill="#ffffff" stroke="#f59e0b" stroke-opacity=".55"/>
+<text x="708.7" y="477" font-size="11.5" fill="#475569" font-family="ui-monospace,SFMono-Regular,Menlo,monospace">research-worker</text>
+<rect x="828.2" y="462" width="120" height="22" rx="11" fill="#ffffff" stroke="#f59e0b" stroke-opacity=".55"/>
+<text x="835.2" y="477" font-size="11.5" fill="#475569" font-family="ui-monospace,SFMono-Regular,Menlo,monospace">source-verifier</text>
+<rect x="954.7" y="462" width="92" height="22" rx="11" fill="#ffffff" stroke="#f59e0b" stroke-opacity=".55"/>
+<text x="961.7" y="477" font-size="11.5" fill="#475569" font-family="ui-monospace,SFMono-Regular,Menlo,monospace">copy-writer</text>
+<path d="M320,496 L320,528" stroke="#94a3b8" stroke-width="2" fill="none" marker-end="url(#a)"/>
+<text x="328.0" y="516.0" font-size="11.5" fill="#94a3b8">findings</text>
+<path d="M700,496 L700,528" stroke="#94a3b8" stroke-width="2" fill="none" marker-end="url(#a)"/>
+<text x="708.0" y="516.0" font-size="11.5" fill="#94a3b8">worker results</text>
+<rect x="40" y="528" width="740" height="132" rx="14" fill="#f8fafc" stroke="#e2e8f0"/>
+<rect x="40" y="528" width="6" height="132" rx="3" fill="#10b981"/>
+<text x="62" y="558" font-size="17" font-weight="700" fill="#0f172a">super_ads_core  ·  deterministic engine</text>
+<text x="62" y="582" font-size="13" fill="#475569">23 versioned JSON schemas, export adapters, scoring, reporting, and Cockpit IO.</text>
+<text x="62" y="602" font-size="13" fill="#475569">Unknown is a real answer; no health score without approved evidence.</text>
+<rect x="62" y="626" width="78" height="22" rx="11" fill="#ffffff" stroke="#10b981" stroke-opacity=".55"/>
+<text x="69" y="641" font-size="11.5" fill="#475569" font-family="ui-monospace,SFMono-Regular,Menlo,monospace">contracts</text>
+<rect x="145.9" y="626" width="71" height="22" rx="11" fill="#ffffff" stroke="#10b981" stroke-opacity=".55"/>
+<text x="152.9" y="641" font-size="11.5" fill="#475569" font-family="ui-monospace,SFMono-Regular,Menlo,monospace">adapters</text>
+<rect x="222.7" y="626" width="64" height="22" rx="11" fill="#ffffff" stroke="#10b981" stroke-opacity=".55"/>
+<text x="229.7" y="641" font-size="11.5" fill="#475569" font-family="ui-monospace,SFMono-Regular,Menlo,monospace">scoring</text>
+<rect x="292.4" y="626" width="78" height="22" rx="11" fill="#ffffff" stroke="#10b981" stroke-opacity=".55"/>
+<text x="299.4" y="641" font-size="11.5" fill="#475569" font-family="ui-monospace,SFMono-Regular,Menlo,monospace">reporting</text>
+<rect x="376.29999999999995" y="626" width="64" height="22" rx="11" fill="#ffffff" stroke="#10b981" stroke-opacity=".55"/>
+<text x="383.29999999999995" y="641" font-size="11.5" fill="#475569" font-family="ui-monospace,SFMono-Regular,Menlo,monospace">cockpit</text>
+<rect x="800" y="528" width="360" height="132" rx="14" fill="#f8fafc" stroke="#e2e8f0"/>
+<rect x="800" y="528" width="6" height="132" rx="3" fill="#6366f1"/>
+<text x="822" y="558" font-size="17" font-weight="700" fill="#0f172a">control-plane</text>
+<text x="822" y="582" font-size="13" fill="#475569">414 registered controls, 109 dated sources,</text>
+<text x="822" y="602" font-size="13" fill="#475569">capabilities, safety, and release gates.</text>
+<rect x="822" y="626" width="64" height="22" rx="11" fill="#ffffff" stroke="#6366f1" stroke-opacity=".55"/>
+<text x="829" y="641" font-size="11.5" fill="#475569" font-family="ui-monospace,SFMono-Regular,Menlo,monospace">sources</text>
+<rect x="891.7" y="626" width="57" height="22" rx="11" fill="#ffffff" stroke="#6366f1" stroke-opacity=".55"/>
+<text x="898.7" y="641" font-size="11.5" fill="#475569" font-family="ui-monospace,SFMono-Regular,Menlo,monospace">claims</text>
+<rect x="954.3000000000001" y="626" width="99" height="22" rx="11" fill="#ffffff" stroke="#6366f1" stroke-opacity=".55"/>
+<text x="961.3000000000001" y="641" font-size="11.5" fill="#475569" font-family="ui-monospace,SFMono-Regular,Menlo,monospace">capabilities</text>
+<path d="M800,594 L784,594" stroke="#94a3b8" stroke-width="2" fill="none" marker-end="url(#a)"/>
+<path d="M410,660 L410,692" stroke="#94a3b8" stroke-width="2" fill="none" marker-end="url(#a)"/>
+<text x="418.0" y="680.0" font-size="11.5" fill="#94a3b8">one validated ReportBundle</text>
+<rect x="40" y="692" width="740" height="92" rx="14" fill="#f8fafc" stroke="#e2e8f0"/>
+<rect x="40" y="692" width="6" height="92" rx="3" fill="#14b8a6"/>
+<text x="62" y="722" font-size="17" font-weight="700" fill="#0f172a">Deliverables</text>
+<text x="62" y="746" font-size="13" fill="#475569">Markdown, HTML, or PDF rendered from the same JSON. Optional local Cockpit workbench.</text>
+<rect x="800" y="692" width="360" height="92" rx="14" fill="#f8fafc" stroke="#e2e8f0"/>
+<rect x="800" y="692" width="6" height="92" rx="3" fill="#ef4444"/>
+<text x="822" y="722" font-size="17" font-weight="700" fill="#0f172a">Mutation gate</text>
+<text x="822" y="746" font-size="13" fill="#475569">Draft by default. Diff, owner approval, ceilings,</text>
+<text x="822" y="766" font-size="13" fill="#475569">idempotency, rollback, and verification.</text>
+</svg>

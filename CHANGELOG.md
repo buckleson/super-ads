@@ -7,6 +7,26 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+### Added
+
+* Redesigned README with a demo video (GIF and MP4) recorded from real
+  `super-ads-core` output, an HTML report screenshot, a generated architecture
+  diagram (light and dark), and Mermaid diagrams of the audit lifecycle,
+  evidence verdicts, and the mutation gate. Media sources live in `docs/media/`.
+* `tests/freshness` and a CI "Evidence freshness" job (`pytest -m freshness`)
+  that compare committed evidence with today's date. Release verification
+  requires the job.
+
+### Fixed
+
+* Pinned git installs (`--ref`) failed on git 2.43 because
+  `checkout --detach --end-of-options <sha> --` is rejected there. The installers
+  now check out the already validated hex SHA with `checkout --detach <sha> --`.
+* Logic tests no longer fail when the calendar passes an evidence refresh date;
+  they evaluate the committed 2.1.0 evidence snapshot at its own date. Live
+  freshness stays enforced by the release gate and the freshness suite.
+* Dependency-audit test expects the sorted guarded-code scope after the rename.
+
 ## [2.1.0] - 2026-11-27
 
 First Super Ads release by Buckleson.

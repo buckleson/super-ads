@@ -17,7 +17,9 @@ audit = importlib.util.module_from_spec(SPEC)
 sys.modules[SPEC.name] = audit
 SPEC.loader.exec_module(audit)
 
-AS_OF = datetime.now(timezone.utc).date()
+# Inside the committed exception window (generated 2026-10-07, expires
+# 2026-11-06). Live expiry is checked by tests/freshness and the release gate.
+AS_OF = date(2026, 10, 16)
 
 
 def _reports(records):
@@ -46,7 +48,7 @@ def _reports(records):
 def test_not_affected_evidence_matches_locks_and_code_paths() -> None:
     records, scope = audit.load_exceptions(ROOT, AS_OF)
     assert records
-    assert scope == ["super_ads_core", "evals", "scripts"]
+    assert scope == ["evals", "scripts", "super_ads_core"]
     summary = audit.evaluate_reports(_reports(records), records)
     assert summary == {
         "status": "pass",

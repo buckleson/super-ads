@@ -229,7 +229,18 @@ def test_platform_runtime_sources_use_https_official_hosts(repo_root):
             assert source["redistribution"] == "metadata-only"
 
 
+# Date of the committed 2.1.0 evidence snapshot. Logic tests evaluate the
+# ledgers at this fixed date so they stay deterministic; whether the evidence
+# is still fresh *today* is checked by tests/freshness (pytest -m freshness)
+# and enforced live by the release gate.
+EVIDENCE_AS_OF = date(2026, 10, 16)
+
+
 def test_platform_grounding_claims_are_load_bearing_and_fresh(repo_root):
+    assert_grounding_claims_fresh(repo_root, EVIDENCE_AS_OF)
+
+
+def assert_grounding_claims_fresh(repo_root, as_of):
     claim_doc = _manifest(repo_root, "claim-ledger.json")
     claims = {item["id"]: item for item in claim_doc["claims"]}
     sources = {item["id"]: item for item in _manifest(repo_root, "source-ledger.json")["sources"]}
@@ -242,7 +253,6 @@ def test_platform_grounding_claims_are_load_bearing_and_fresh(repo_root):
         *NEW_PLATFORM_FOUNDATION_SOURCES,
     ):
         assert claims[claim_id]["load_bearing"] is True
-    as_of = datetime.now(timezone.utc).date()
     for claim in claims.values():
         if not claim["load_bearing"]:
             continue

@@ -9,46 +9,43 @@
 
 <p align="center">
   <strong>Your AI paid-media analyst. Twelve ad platforms. One command line.</strong><br>
-  Built and maintained by <a href="https://github.com/buckleson">Buckleson</a>.
+  Audits, plans, creative, monitoring, and client reports, with evidence behind every finding.
 </p>
 
 <p align="center">
-  <a href="LICENSE"><img alt="License: MIT" src="https://img.shields.io/badge/license-MIT-0f766e"></a>
-  <img alt="Version 2.1.0" src="https://img.shields.io/badge/version-2.1.0-2563eb">
-  <img alt="Python 3.11 and 3.12" src="https://img.shields.io/badge/python-3.11%20%7C%203.12-3776ab">
-  <img alt="Runs in Claude Code" src="https://img.shields.io/badge/runs%20in-Claude%20Code-d97706">
-  <img alt="Read only by default" src="https://img.shields.io/badge/accounts-read--only%20by%20default-16a34a">
+  <a href="LICENSE"><img alt="License: MIT" src="https://img.shields.io/badge/license-MIT-0f766e?style=for-the-badge"></a>
+  <img alt="Version 2.1.0" src="https://img.shields.io/badge/version-2.1.0-2563eb?style=for-the-badge">
+  <img alt="Python 3.11 and 3.12" src="https://img.shields.io/badge/python-3.11%20%7C%203.12-3776ab?style=for-the-badge&logo=python&logoColor=white">
+  <img alt="Runs in Claude Code" src="https://img.shields.io/badge/runs%20in-Claude%20Code-d97706?style=for-the-badge">
+</p>
+<p align="center">
+  <img alt="12 platforms" src="https://img.shields.io/badge/platforms-12-8b5cf6?style=flat-square">
+  <img alt="33 skills" src="https://img.shields.io/badge/skills-33-ec4899?style=flat-square">
+  <img alt="25 agents" src="https://img.shields.io/badge/agents-25-f59e0b?style=flat-square">
+  <img alt="414 controls" src="https://img.shields.io/badge/controls-414-10b981?style=flat-square">
+  <img alt="Read only by default" src="https://img.shields.io/badge/accounts-read--only%20by%20default-16a34a?style=flat-square">
+  <img alt="No telemetry" src="https://img.shields.io/badge/telemetry-none-0ea5e9?style=flat-square">
+</p>
+
+<p align="center">
+  <a href="#quickstart">Quickstart</a> ·
+  <a href="#see-it-in-action">Demo</a> ·
+  <a href="#features">Features</a> ·
+  <a href="#how-it-works">How it works</a> ·
+  <a href="#commands">Commands</a> ·
+  <a href="#installation">Install</a> ·
+  <a href="#security">Security</a>
 </p>
 
 ---
 
-Super Ads turns Claude Code into a senior paid-media strategist. Hand it an
+**Super Ads** turns Claude Code into a senior paid-media strategist. Hand it an
 account export, a screenshot, or a pasted summary and it tells you **what is
 working, what is broken, and what to fix first** across Google, Meta, YouTube,
 LinkedIn, TikTok, Microsoft, Apple, Amazon, Reddit, Pinterest, Snapchat, and X.
 
-It is made for agencies, consultants, and in-house growth teams who want
+It is built for agencies, consultants, and in-house growth teams who want
 audit-grade answers without handing their ad accounts to a black box.
-
-<table>
-  <tr>
-    <td width="33%" valign="top">
-      <h3>Evidence, not vibes</h3>
-      Every finding cites the data it came from. Missing data is reported as
-      <code>unknown</code>, never guessed.
-    </td>
-    <td width="33%" valign="top">
-      <h3>Hands off your accounts</h3>
-      Read only by default. Changes are drafts until a human approves the exact
-      plan, inside owner-set spend ceilings, with a rollback.
-    </td>
-    <td width="33%" valign="top">
-      <h3>Your data stays yours</h3>
-      No telemetry, no phone-home, no analytics. API keys only ever go to the
-      provider you configured.
-    </td>
-  </tr>
-</table>
 
 ## Quickstart
 
@@ -65,17 +62,99 @@ audit-grade answers without handing their ad accounts to a black box.
   </picture>
 </p>
 
-## What you can do
+## See it in action
 
-| You want to | Run | You get |
-| --- | --- | --- |
-| Find out what is wrong | `/ads audit` | Passed, failed, and unchecked items, each with its evidence |
-| Decide where to spend | `/ads plan` | Channel, budget, measurement, and competitor plans |
-| Make ads | `/ads create` | Copy, image, video, and product-photo briefs and assets |
-| Keep watch | `/ads monitor` | Pacing, delivery, tracking, ad fatigue, and policy checks |
-| Improve results | `/ads optimize --draft` | Suggested changes, written as drafts |
-| Test an idea | `/ads experiment` | A test design, or a readout of a finished test |
-| Hand it to a client | `/ads report` | Markdown, HTML, or PDF rendered from one validated JSON bundle |
+<p align="center">
+  <img src="assets/demo/super-ads-demo.gif" alt="Super Ads core CLI demo: normalize an export, start the Cockpit walkthrough, render a report, and ask for the next blocker" width="100%">
+</p>
+
+<p align="center">
+  <sub>Real <code>super-ads-core</code> output on synthetic fixture data, no ad account required.
+  <a href="assets/demo/super-ads-demo.mp4">Watch the full-quality MP4</a>.</sub>
+</p>
+
+### What a report looks like
+
+Every run produces one validated JSON bundle. Markdown, HTML, and PDF are
+renderings of that same bundle, so what you send a client always matches the
+evidence.
+
+<table>
+  <tr>
+    <td width="55%" valign="top">
+      <a href="assets/media/audit-report.png"><img src="assets/media/audit-report.png" alt="Super Ads audit report rendered as HTML: run summary, decision status, category health, and findings"></a>
+    </td>
+    <td width="45%" valign="top">
+      <h4>Read it in ten seconds</h4>
+      <ul>
+        <li><b>Decision status</b> up top: completeness, evidence status, health, coverage.</li>
+        <li><b>Loud warnings</b> when work is partial or evidence is thin. A partial run is never dressed up as a full audit.</li>
+        <li><b>Every finding</b> carries severity, confidence, observation, diagnosis, recommended action, and the raw evidence.</li>
+        <li><b>Unknown is a real answer.</b> Missing data lowers coverage; it is never guessed.</li>
+        <li><b>Prioritized actions</b> with an owner, timing, and a success measure.</li>
+      </ul>
+    </td>
+  </tr>
+</table>
+
+## Features
+
+<table>
+  <tr>
+    <td width="33%" valign="top">
+      <h3>🔎 Audit</h3>
+      Twelve platform audits backed by <b>414 registered controls</b>. Each check ends in
+      <code>pass</code>, <code>fail</code>, <code>unknown</code>, or <code>not_applicable</code>,
+      with the evidence that decided it.
+    </td>
+    <td width="33%" valign="top">
+      <h3>🧭 Plan</h3>
+      Channel mix, budget, campaign structure, competitor, and measurement plans, with
+      industry templates for SaaS, ecommerce, local services, B2B, healthcare, finance,
+      real estate, and more.
+    </td>
+    <td width="33%" valign="top">
+      <h3>🎨 Create</h3>
+      Ad copy, image, video, and product-photo briefs and assets. Brand DNA capture keeps
+      everything on brand. Paid generation always asks for provider, scope, and a cost
+      ceiling first.
+    </td>
+  </tr>
+  <tr>
+    <td width="33%" valign="top">
+      <h3>📈 Monitor and optimize</h3>
+      Pacing, delivery, tracking, ad fatigue, and policy checks. Optimizations are written
+      as drafts with a before and after diff.
+    </td>
+    <td width="33%" valign="top">
+      <h3>🧪 Experiment</h3>
+      Design a controlled test with the right sample size, or read out a finished one
+      with honest confidence.
+    </td>
+    <td width="33%" valign="top">
+      <h3>🧾 Report</h3>
+      Client-ready Markdown, HTML, or PDF from one validated JSON bundle. Your own
+      white-label branding only, never promotional links.
+    </td>
+  </tr>
+  <tr>
+    <td width="33%" valign="top">
+      <h3>🛡️ Safe by design</h3>
+      Read only by default. Account changes need a tested capability, explicit IDs,
+      owner approval inside spend ceilings, idempotency, and a rollback.
+    </td>
+    <td width="33%" valign="top">
+      <h3>📚 Source-grounded</h3>
+      <b>109 dated sources</b> back every platform claim. When a source passes its refresh
+      date, results that depend on it are marked provisional.
+    </td>
+    <td width="33%" valign="top">
+      <h3>🖥️ Cockpit (optional)</h3>
+      A local workbench to browse runs, evidence, missing inputs, comparisons, and report
+      receipts, with a synthetic demo you can try in seconds.
+    </td>
+  </tr>
+</table>
 
 ## Platforms
 
@@ -86,10 +165,77 @@ audit-grade answers without handing their ad accounts to a black box.
   </picture>
 </p>
 
-Every platform has its own focused skill, audit worker, control reference, and
+| Search and shopping | Social | Video and retail | Emerging |
+| --- | --- | --- | --- |
+| Google Ads, Microsoft Ads, Apple Ads | Meta, LinkedIn, TikTok, Snapchat | YouTube, Amazon Ads, Pinterest | Reddit, X |
+
+Each platform has its own focused skill, audit worker, control reference, and
 capability declaration. The
 [capability manifest](control-plane/manifests/capability-manifest.json) is the
 authoritative record of what can be read or changed live.
+
+## How it works
+
+<p align="center">
+  <picture>
+    <source media="(prefers-color-scheme: dark)" srcset="assets/architecture-dark.svg">
+    <img src="assets/architecture-light.svg" alt="Super Ads architecture: agent host, /ads conductor, 33 skills and 25 worker agents, deterministic super_ads_core engine, control plane, deliverables, and mutation gate" width="100%">
+  </picture>
+</p>
+
+### The life of an audit
+
+```mermaid
+sequenceDiagram
+    autonumber
+    actor You
+    participant C as /ads conductor
+    participant W as Audit workers
+    participant Core as super_ads_core
+    participant CP as control-plane
+    You->>C: /ads audit google + export
+    C->>CP: load controls, sources, capabilities
+    C->>Core: normalize export into a snapshot
+    C->>W: dispatch bounded audit slices
+    W-->>C: schema-valid findings with evidence
+    C->>Core: validate, score coverage, build ReportBundle
+    Core-->>C: pass / fail / unknown per control
+    C-->>You: report with warnings, findings, and prioritized actions
+```
+
+### From evidence to verdict
+
+```mermaid
+flowchart LR
+    E[Your export or screenshot] --> N[Normalize and validate]
+    N --> K{Evidence for this control?}
+    K -- yes --> V{Meets the control?}
+    K -- no --> U[unknown: lowers coverage, never guessed]
+    V -- yes --> P[pass]
+    V -- no --> F[fail + recommended action]
+    P --> R[ReportBundle]
+    F --> R
+    U --> R
+    R --> G{Coverage}
+    G -- 80% or more --> GR[graded]
+    G -- 60 to 79% --> PR[provisional]
+    G -- below 60% --> IN[insufficient evidence]
+```
+
+### Changing an account, safely
+
+```mermaid
+flowchart LR
+    A[Suggested change] --> D[Draft with before and after diff]
+    D --> Q1{Capability tested and enabled?}
+    Q1 -- no --> X[Stays a draft]
+    Q1 -- yes --> Q2{Owner approves the exact plan<br/>within spend ceilings?}
+    Q2 -- no --> X
+    Q2 -- yes --> Q3{Remote state still matches?}
+    Q3 -- no --> X
+    Q3 -- yes --> W[Apply with idempotency key]
+    W --> VER[Verify, audit log, keep rollback]
+```
 
 ## Commands
 
@@ -114,7 +260,24 @@ Standalone installs use `/ads`. Claude Code plugins are namespaced and use
 Platform shortcuts such as `/ads google`, `/ads meta`, `/ads amazon`, and
 `/ads reddit` jump straight to that platform's audit.
 
-## Built to be trusted
+<details>
+<summary><b>Deterministic core CLI</b> (<code>super-ads-core</code>)</summary>
+
+The engine behind the skills is a plain Python CLI you can script against:
+
+| Command | What it does |
+| --- | --- |
+| `super-ads-core ingest-export --platform google export.csv` | Normalize a CSV export into a validated account snapshot |
+| `super-ads-core validate <contract> file.json` | Validate any versioned JSON contract |
+| `super-ads-core score` / `portfolio` | Score one account or aggregate a portfolio |
+| `super-ads-core render bundle.json --format html` | Render a ReportBundle as Markdown, HTML, or PDF under a safe root |
+| `super-ads-core status --as-of YYYY-MM-DD` | Show capabilities, evidence freshness, and maturity |
+| `super-ads-core next --as-of YYYY-MM-DD` | Show exactly one blocker |
+| `super-ads-core cockpit demo --runs-root runs` | Create the synthetic Cockpit walkthrough |
+
+</details>
+
+## Security
 
 <p align="center">
   <picture>
@@ -123,30 +286,19 @@ Platform shortcuts such as `/ads google`, `/ads meta`, `/ads amazon`, and
   </picture>
 </p>
 
-Every check ends in one of four results: `pass`, `fail`, `unknown`, or
-`not_applicable`. Unknown is a real answer: the data was missing, so nothing
-was guessed.
+Super Ads received a full line-by-line security review of every skill, agent,
+script, hook, installer, workflow, and data file before release.
 
-### Security review
+| Area | What you can rely on |
+| --- | --- |
+| **Network** | No telemetry, analytics, or phone-home. Traffic happens only when you ask: the URL you audit and the image provider you configured. |
+| **AI instructions** | No hidden or injected instructions. Web pages, exports, and API responses are data, never instructions. Agents get least-privilege tools. |
+| **Fetching** | DNS pinned to vetted public IPs, every redirect revalidated, private, link-local, metadata, and site-local IPv6 ranges blocked, 10 MiB body cap, browser WebSockets closed. |
+| **Installers** | Hash-pinned dependencies, no `sudo`, no shell rc or settings edits. The uninstaller removes only files it installed. |
+| **Deliverables** | No promotional copy, community links, or referral links. Only your own white-label branding. |
+| **Credentials** | Environment variables, an OS keychain, or a secret manager. Never the repository, profiles, reports, or logs. |
 
-The Super Ads codebase received a full line-by-line security review before
-release. In short:
-
-- **No telemetry or hidden network calls.** Outbound traffic happens only when
-  you ask for it: the URL you audit, and the image provider you configured.
-- **No prompt injection in the skills.** Agents are read-only auditors except
-  where a tool is required for the job, and all web and account content is
-  treated as data, never as instructions.
-- **Hardened fetching.** Landing-page fetches pin DNS to vetted public IPs,
-  revalidate every redirect, block private, link-local, metadata, and
-  site-local IPv6 ranges, cap response bodies at 10 MiB, and close browser
-  WebSockets.
-- **Safe installers.** Hash-pinned dependencies, no `sudo`, no shell rc or
-  settings edits, and an uninstaller that can only remove files it installed.
-- **Clean client deliverables.** Reports never carry promotional copy,
-  community links, or referral links. Only your own white-label branding.
-
-Found something? See [SECURITY.md](SECURITY.md).
+Found something? Please follow [SECURITY.md](SECURITY.md).
 
 ## Super Ads Cockpit (optional)
 
@@ -207,8 +359,8 @@ the default branch HEAD, which is unpinned and is not a verified release. Prefer
 
 To pin a git install, add `--ref` (PowerShell: `-Ref`) with a tag, branch, or
 commit. It is valid only with `--source=git`. The installer validates the value
-strictly, checks it out detached, prints the resolved full commit SHA, and fails
-before installing anything if the ref does not resolve:
+strictly, checks out only the resolved commit, prints the full commit SHA, and
+fails before installing anything if the ref does not resolve:
 
 ```bash
 bash install.sh --source=git --ref=v2.1.0
@@ -273,6 +425,8 @@ load Cockpit; it has its own marketplace entry.
 > - The Cockpit companion is optional and not yet natively accepted; see its
 >   [compatibility and acceptance limits](docs/cockpit/compatibility.md).
 > - Account changes stay drafts unless the full mutation gate passes.
+> - Evidence freshness is checked separately with `pytest -m freshness`; refresh
+>   sources and dependency exceptions when it reports expiry.
 
 ## For engineers and contributors
 
@@ -317,8 +471,6 @@ All adapters are read-only by default. Applying a change requires:
 6. Verification that remote state still matches the mutation precondition.
 
 Missing ceilings mean no write. Permanent deletion is not supported.
-Credentials belong in environment variables, an OS keychain, or an approved
-secret manager, never in the repository, profiles, reports, or logs.
 
 ### Evidence and release controls
 
@@ -342,7 +494,8 @@ python3.12 -m venv .venv
 .venv/bin/python -m pip install --require-hashes --only-binary=:all: -r requirements-dev.lock
 .venv/bin/python -m pip install --require-hashes --only-binary=:all: -r .github/requirements-schema-tests.lock
 .venv/bin/python -m pip check
-.venv/bin/python -m pytest -q
+.venv/bin/python -m pytest -q                 # deterministic suite
+.venv/bin/python -m pytest -m freshness -q    # evidence freshness against today's date
 ```
 
 Useful focused checks:
@@ -352,6 +505,9 @@ python -m super_ads_core --version
 python -m super_ads_core validate finding path/to/finding.json
 bash -n install.sh uninstall.sh
 ```
+
+README media (architecture diagram, screenshot, demo video) is generated from
+the repository; see [docs/media](docs/media/README.md).
 
 ### Repository map
 
@@ -365,13 +521,25 @@ scripts/              browser, creative, reporting, and release helpers
 mods/                 optional Cockpit companion
 evals/                routing and behavioral evaluation cases
 tests/                deterministic, security, installer, and adapter tests
+docs/                 Cockpit guides and README media sources
 ```
 
 </details>
 
-## Contributing
+## Contributors
 
-Found a problem or have an idea? See [CONTRIBUTING.md](CONTRIBUTING.md).
+<table>
+  <tr>
+    <td align="center" width="160">
+      <a href="https://github.com/vjk7989"><img src="https://github.com/vjk7989.png?size=120" width="96" height="96" alt="VJK7989"><br><sub><b>VJK7989</b></sub></a>
+    </td>
+    <td align="center" width="160">
+      <a href="https://github.com/buckleson"><img src="https://github.com/buckleson.png?size=120" width="96" height="96" alt="Buckleson"><br><sub><b>Buckleson</b></sub></a>
+    </td>
+  </tr>
+</table>
+
+Want to help? See [CONTRIBUTING.md](CONTRIBUTING.md).
 
 ## Privacy
 

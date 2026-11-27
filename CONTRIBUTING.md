@@ -95,6 +95,11 @@ A write capability requires sandbox fixtures, idempotency, exact object scope,
 approval, ceilings, verification, audit, rollback, and adversarial tests. Permanent
 deletion is unsupported in v2.
 
+## Maintainers
+
+Super Ads is maintained by [@vjk7989](https://github.com/vjk7989) (VJK7989) and
+[@buckleson](https://github.com/buckleson) (Buckleson).
+
 ## Security reports
 
 Do not open a public issue for a vulnerability. Use the repository's private

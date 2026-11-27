@@ -11,6 +11,8 @@ abstract: >
 authors:
   - name: "Buckleson"
     website: "https://github.com/buckleson"
+  - alias: "VJK7989"
+    website: "https://github.com/vjk7989"
 repository-code: "https://github.com/buckleson/super-ads"
 url: "https://github.com/buckleson/super-ads"
 license: MIT

@@ -11,3 +11,4 @@
 
 *.md linguist-documentation=false
 *.ps1 linguist-vendored
+*.mp4 binary

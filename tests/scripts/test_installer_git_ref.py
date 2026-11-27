@@ -77,7 +77,7 @@ def _fake_git(tmp_path: Path, distribution: Path, refs: dict[str, str]) -> dict[
         "    ;;\n"
         "  checkout)\n"
         '    while [ $# -gt 0 ]; do\n'
-        '      if [ "$1" = --end-of-options ]; then printf "%s" "$2" > "$repo/.fake-head"; fi\n'
+        '      if [ "$2" = -- ]; then printf "%s" "$1" > "$repo/.fake-head"; fi\n'
         "      shift\n"
         "    done\n"
         "    ;;\n"
@@ -232,7 +232,7 @@ def test_valid_tag_is_checked_out_detached_after_clone_and_sha_is_printed(tmp_pa
     checkout = [line for line in lines if " checkout " in line]
     assert len(checkout) == 1
     assert checkout[0].startswith("-c advice.detachedHead=false -C ")
-    assert checkout[0].endswith(f"checkout --detach --end-of-options {TAG_SHA} --")
+    assert checkout[0].endswith(f"checkout --detach {TAG_SHA} --")
     assert lines.index(checkout[0]) > 0, "checkout must follow the clone"
 
     assert "Pinned git ref: v2.0.2" in result.stdout
@@ -255,7 +255,7 @@ def test_branch_ref_resolves_through_the_remote_tracking_ref(tmp_path):
     assert result.returncode == 0, result.stdout + result.stderr
     assert f"Resolved commit: {BRANCH_SHA}" in result.stdout
     assert any(
-        line.endswith(f"checkout --detach --end-of-options {BRANCH_SHA} --")
+        line.endswith(f"checkout --detach {BRANCH_SHA} --")
         for line in _log_lines(tmp_path)
     )
 
@@ -472,7 +472,7 @@ def test_powershell_checks_out_the_resolved_ref_detached_and_fails_closed():
     resolve = text.index("rev-parse --verify --quiet --end-of-options $Candidate")
     checkout = text.index(
         "git -c advice.detachedHead=false -C $CloneDir checkout --detach "
-        "--end-of-options $PinnedSha --"
+        "$PinnedSha --"
     )
     assert clone < resolve < checkout
     assert "Git ref does not resolve to a commit: $Ref. Nothing was installed." in text

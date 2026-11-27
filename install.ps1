@@ -552,7 +552,7 @@ function Main {
                     throw "Git ref does not resolve to a commit: $Ref. Nothing was installed."
                 }
                 $ErrorActionPreference = "Continue"
-                $CheckoutOutput = & git -c advice.detachedHead=false -C $CloneDir checkout --detach --end-of-options $PinnedSha -- 2>&1
+                $CheckoutOutput = & git -c advice.detachedHead=false -C $CloneDir checkout --detach $PinnedSha -- 2>&1
                 $CheckoutExitCode = $LASTEXITCODE
                 $HeadSha = "$(& git -C $CloneDir rev-parse --verify HEAD 2>$null)"
                 $ErrorActionPreference = "Stop"

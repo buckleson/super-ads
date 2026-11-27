@@ -12,7 +12,7 @@ import platform
 import sys
 
 
-EXPECTED_INVENTORY_SHA256 = "a597bea13fe611f2f2d0037786065f414f7bef50c1dc65372ecb895f9ddf3d5a"
+EXPECTED_INVENTORY_SHA256 = "6129ecef6f711abdc9a9234d6fa6a0541b18a68c15af128be84b652c9fbb1796"
 
 
 def digest(path: Path) -> str:

@@ -62,8 +62,13 @@ def _write_gate(tmp_path: Path, report: dict) -> Path:
     return path
 
 
+# Date of the committed 2.1.0 evidence snapshot; live freshness is covered by
+# tests/freshness (pytest -m freshness) and the release gate.
+EVIDENCE_AS_OF = date(2026, 10, 16)
+
+
 def test_current_repository_status_has_one_declared_next_blocker(repo_root: Path):
-    result = evaluate_product_status(repo_root, as_of=datetime.now(timezone.utc).date())
+    result = evaluate_product_status(repo_root, as_of=EVIDENCE_AS_OF)
     assert result["maturity"]["current"] == "domain-integrated"
     assert result["evidence"]["stale_load_bearing_claims"] == []
     assert result["evidence"]["unverified_load_bearing_claims"] == []

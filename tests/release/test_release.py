@@ -762,12 +762,21 @@ def test_claude_command_contract_distinguishes_plugin_namespace() -> None:
 
 
 GROUNDING_WINDOW_AS_OF = release.date(2026, 9, 10)
+# Date of the committed 2.1.0 evidence snapshot. Live freshness is covered by
+# tests/freshness (pytest -m freshness) and enforced by the real release gate.
+EVIDENCE_AS_OF = release.date(2026, 10, 16)
+
+
+class _FrozenEvidenceClock(release.datetime):
+    @classmethod
+    def now(cls, tz=None):
+        return cls(2026, 10, 16, 12, 0, 0, tzinfo=tz)
 
 
 def test_release_grounding_gate_validates_control_registry_and_profiles() -> None:
-    """Exercise the live ledgers at the same UTC date used by the release gate."""
+    """Exercise the committed ledgers at their evidence snapshot date."""
     root = RELEASE_SCRIPT.parents[1]
-    as_of = release.datetime.now(release.timezone.utc).date()
+    as_of = EVIDENCE_AS_OF
     result = check_grounding_and_capabilities(root, as_of)
     assert result["registered_control_count"] == 414
     assert result["enabled_scoring_profile_count"] == 0
@@ -895,7 +904,7 @@ def test_release_grounding_gate_rejects_out_of_window_evidence(
 
 def test_vulnerability_exception_evidence_is_release_packaged() -> None:
     root = RELEASE_SCRIPT.parents[1]
-    as_of = release.datetime.now(release.timezone.utc).date()
+    as_of = EVIDENCE_AS_OF
     result = check_vulnerability_exceptions(root, as_of)
     document = json.loads(
         (root / "control-plane/manifests/vulnerability-exceptions.json").read_text(
@@ -938,8 +947,11 @@ def test_release_gate_output_conforms_to_v2_schema() -> None:
     assert "ecosystem-ledger-integrity" not in {item["id"] for item in report["checks"]}
 
 
-def test_release_gate_fails_closed_without_external_model_review_and_ci_evidence() -> None:
+def test_release_gate_fails_closed_without_external_model_review_and_ci_evidence(
+    monkeypatch,
+) -> None:
     root = RELEASE_SCRIPT.parents[1]
+    monkeypatch.setattr(release, "datetime", _FrozenEvidenceClock)
     report = evaluate_release_gate(
         root,
         model_report=None,
